@@ -1,7 +1,23 @@
-import React from "react";
+import { useState } from "react";
 
 const ApplicationForm = () => {
-    return <div>Application Form</div>;
+    const [firstName, setFirstName] = useState("");
+
+    const handleSubmit = () => {
+        console.log(firstName);
+    };
+    return (
+        <div>
+            <h1>Application Form</h1>
+            <div>
+                <input
+                    placeholder="First name"
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <button onClick={handleSubmit}>Submit</button>
+            </div>
+        </div>
+    );
 };
 
 export default ApplicationForm;
