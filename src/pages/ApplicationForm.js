@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useReducer } from "react";
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case "SET_FIRST_NAME":
+            return action.payload;
+        default:
+            return state;
+    }
+};
 
 const ApplicationForm = () => {
-    const [firstName, setFirstName] = useState("");
+    const [state, dispatch] = useReducer(reducer, "");
 
     const handleSubmit = () => {
-        console.log(firstName);
+        console.log(state);
     };
     return (
         <div>
@@ -12,7 +21,13 @@ const ApplicationForm = () => {
             <div>
                 <input
                     placeholder="First name"
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) =>
+                        dispatch({
+                            type: "SET_FIRST_NAME",
+                            payload: e.target.value,
+                        })
+                    }
+                    value={state}
                 />
                 <button onClick={handleSubmit}>Submit</button>
             </div>
